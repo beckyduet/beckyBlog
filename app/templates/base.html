@@ -1,0 +1,119 @@
+{% from 'bootstrap5/nav.html' import render_nav_item %}
+{% from 'bootstrap5/utils.html' import render_messages %}
+{% from 'bootstrap5/form.html' import render_form %}
+
+
+<html>
+<head>
+    {% block head %}
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+    <title>{% block title %} Beckyの二重奏 {% endblock %} </title>
+    <link href="{{ url_for('static', filename='favicon.ico') }}" rel="icon">
+
+    <link href="{{ url_for('static',filename='editormd/css/editormd.min.css') }}" rel="stylesheet"/>
+    <link href="{{ url_for('static',filename='editormd/lib/prism.css') }}" rel="stylesheet"/>
+    {{ bootstrap.load_css() }}
+<!--        <link href="{{ url_for('static',filename='editormd/examples/css/style.css') }}" rel="stylesheet"/>-->
+
+
+    {% endblock %}
+</head>
+<body>
+{% block body %}
+{% block navbar %}
+<nav class="navbar navbar-expand-lg navbar-light bg-light mb-4">
+    <div class="container">
+        <a class="navbar-brand" href="{{ url_for('main.index') }}"> <img alt="favicon"
+                                                                         src="{{ url_for('static', filename='favicon.ico') }}"
+                                                                         width="30">
+            Beckyの二重奏</a>
+        <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"
+                class="navbar-toggler"
+                data-bs-target="#navbarSupportedContent" data-bs-toggle="collapse" type="button">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                {{ render_nav_item('main.index', '') }}
+                {{ render_nav_item('main.index', '推荐文章') }}
+                <!--                <li class="nav-item dropdown">-->
+                <!--                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"-->
+                <!--                       aria-expanded="false">-->
+                <!--                        数据百宝箱-->
+                <!--                    </a>-->
+                <!--                    <ul class="dropdown-menu">-->
+                <!--                        {{ render_nav_item('main.learn_sql', 'SQL', _use_li = True) }}-->
+                <!--                        {{ render_nav_item('main.learn_sql', '数据仓库', _use_li = True) }}-->
+                <!--                        {{ render_nav_item('main.learn_sql', '数据结构和算法', _use_li = True) }}-->
+                <!--                        {{ render_nav_item('main.learn_sql', '推荐系统', _use_li = True) }}-->
+                <!--                        {{ render_nav_item('main.learn_sql', '大数据之路', _use_li = True) }}-->
+                <!--                    </ul>-->
+
+                <!--                </li>-->
+                {{ render_nav_item('main.resume', '关于我') }}
+
+
+            </ul>
+            <!--           <form class="d-flex" role="search">
+                           <input aria-label="Search" class="form-control e-2" placeholder="Search" type="search">
+                           <button class="btn btn-success" type="submit">Search</button>
+                       </form>-->
+            <ul class="nav justify-content-end">
+                <li class="nav-item">
+                    {% if current_user.is_authenticated %}
+                    {{ render_nav_item('main.admin', '后台管理') }}
+                    {% else %}
+                    {% endif %}
+                </li>
+                </li>
+                <li class="nav-item">
+                    {% if current_user.is_authenticated %}
+                    {{ render_nav_item('auth.logout', '登出') }}
+                    {% else %}
+                    {{ render_nav_item('auth.login', '登录') }}
+                    {% endif %}
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+{% endblock %}
+{% block content %}
+<main class="container">
+    {% block page_content %}{% endblock %}
+</main>
+{% endblock %}
+
+
+{% block scripts %}
+
+<script src="https://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+<!--<script src="{{ url_for('static',filename='editormd/examples/js/jquery.min.js') }}"></script>-->
+<script src="{{ url_for('static',filename='editormd/lib/marked.min.js') }}"></script>
+<!--<script src="{{ url_for('static',filename='editormd/lib/prettify.min.js') }}"></script>-->
+<script src="{{ url_for('static',filename='editormd/lib/underscore.min.js') }}"></script>
+<script src="{{ url_for('static',filename='editormd/lib/sequence-diagram.min.js') }}"></script>
+<script src="{{ url_for('static',filename='editormd/lib/flowchart.min.js') }}"></script>
+<script src="{{ url_for('static',filename='editormd/lib/jquery.flowchart.min.js') }}"></script>
+<script src="{{ url_for('static',filename='editormd/editormd.js') }}"></script>
+<script src="{{ url_for('static',filename='editormd/lib/prism.js') }}"></script>
+{{ bootstrap.load_js() }}
+{% endblock %}
+
+<footer class="text-center">
+    {% block footer %}
+    <small> &copy; 2022 –
+        <script>document.write(new Date().getFullYear())</script>
+        <a href="#"> Beckyの二重奏 </a>
+    </small>
+    {% endblock %}
+</footer>
+
+
+{% endblock %}
+
+
+</body>
+</html>

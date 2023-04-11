@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+<h1 align="center">保持好奇心</h1>
+<p align="center">Stay Hungry, Stay Foolish</p>
+<main role="main" class="container">
+    <div class="row">
+        <div class="col-md-8 video-main">
+            <div class="embed-responsive">
+                <iframe src="//player.bilibili.com/player.html?aid=823777752&bvid=BV1ug4y1x7UD&cid=1063406005&page=1"
+                        scrolling="no" border="0" frameborder="no" framespacing="0" height="498" width="810" allowfullscreen="true"></iframe>
+            </div>
+        </div>
+            <aside class="col-md-4 blog-sidebar">
+                <div class="p-3">
+                    <h4 class="font-italic">视频列表</h4>
+                    <ol class="list-unstyled mb-0">
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">3</a></li>
+                        <li><a href="#">4</a></li>
+                        <li><a href="#">5</a></li>
+                        <li><a href="#">6</a></li>
+                        <li><a href="#">7</a></li>
+                        <li><a href="#">8</a></li>
+                        <li><a href="#">9</a></li>
+                        <li><a href="#">10</a></li>
+                        <li><a href="#">11</a></li>
+                        <li><a href="#">12</a></li>
+                    </ol>
+                </div>
+            </aside>
+    </div>
+</main>
+
+{% endblock %}
+{% block scripts %}
+{{ super() }}
+{% endblock %}

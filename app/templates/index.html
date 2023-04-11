@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% from 'bootstrap5/pagination.html' import render_pager, render_pagination %}
+
+{% block content %}
+<main class="container" role="main">
+    <div class="row">
+        <div class="col-md-8 blog-main">
+            {% include '_posts.html' %}
+            {{ render_pagination(pagination) }}
+
+        </div>
+        <aside class="col-md-4 blog-sidebar">
+            <img src="static/images/home_profile.jpeg" class="img-fluid rounded mx-auto d-block" alt="...">
+            <br>
+
+            <div class="p-3 mb-3 bg-light rounded">
+                <h4 class="font-italic">About</h4>
+                <p class="mb-0">你好，我叫 <em>Becky</em> 。本科毕业于武汉大学，目前是一名大数据工程师，业余喜欢旅行、读书和听音乐，居住在深圳。
+                </p>
+            </div>
+            <div class="p-3">
+                <ol class="list-unstyled mb-0">
+                    <li>
+                        <img src="https://img.zhubai.love/1225cec194bc4873a078e95f7f2be4cc.png" width="16"/>
+                        <a href="https://donut.zhubai.love/" target="_blank">竹白</a>
+                    </li>
+                    <li>
+                        <img src="https://g.csdnimg.cn/static/logo/favicon32.ico" width="16"/>
+                        <a href="https://blog.csdn.net/2301_76763123?type=blog" target="_blank">CSDN</a>
+                    </li>
+                    <li>
+                        <svg class="bi bi-github" fill="currentColor" height="16" viewBox="0 0 16 16" width="16"
+                             xmlns="http://www.w3.org/2000/svg">
+                            <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z"/>
+                        </svg>
+                        <a href="https://github.com/beckyduet" target="_blank">Github</a>
+                    </li>
+                </ol>
+
+            </div>
+            <div class="p-3">
+                <h4 class="font-italic">文章分类</h4>
+                <ol class="list-unstyled mb-0">
+                    <li><a href="{{ url_for('main.index',category='大数据' ) }}">大数据</a></li>
+                    <li><a href="{{ url_for('main.index',category='Python') }}">Python</a></li>
+                    <li><a href="{{ url_for('main.index',category='数据结构') }}">Algo&DS</a></li>
+                    <li><a href="{{ url_for('main.index',category='读书分享') }}">读书分享</a></li>
+                </ol>
+            </div>
+        </aside>
+    </div>
+</main>
+
+{% endblock %}

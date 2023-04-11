@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+
+
+{% block page_content %}
+
+<div class="page-header">
+    <h1 align="center">新建文章</h1>
+</div>
+<div>
+    <form action="{{ url_for('main.admin') }}" method="post">
+        {{ form.hidden_tag() }}
+        {{ form.csrf_token() }}
+
+        {{ form.title.label }}
+        {{ form.title(class_='form-control') }}
+
+
+        {{ form.description.label }}
+        {{ form.description(class_='form-control') }}
+
+        {{ form.img_url.label }}
+        {{ form.img_url(class_='form-control') }}
+
+        {{ form.category.label }}
+        {{ form.category() }}
+
+        <div class="form-group">
+            {{ form.body.label }}
+            <div class="form-control" id="editormd">
+                {{ form.body(style="display:none;") }}
+            </div>
+        </div>
+
+        <input class="btn btn-primary" type="submit" value="submit">
+    </form>
+</div>
+
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+{{ super() }}
+
+<script type="text/javascript">
+    var Editor;
+
+    $(function () {
+        Editor = editormd("editormd", {
+
+            width: "90%",
+            height: 640,
+            //syncScrolling: "single",
+            path: "{{ url_for('static',filename='editormd/lib/') }}",
+            codeFold: true,
+            searchReplace: true,
+            htmlDecode: "style,script,img,br,div,iframe|on*",
+            //saveHTMLToTextarea: true, /*开启才能传递保单把md文件转为html*/
+            tocm: true,
+            //tocContainer: "#toc-container", // 自定义 ToC 容器层
+            tocDropdown: false,
+            flowChart: true,
+            taskList: true,
+            emoji: true,
+            sequenceDiagram: true,
+            // 上传图片
+            //imageUpload: true,
+            //imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
+            // 上传图片时指定调用后台的视图函数
+            // homepage是蓝图 uploads是访问url
+            //imageUploadURL: "{{ url_for('main.index') }}",
+
+        });
+    });
+</script>
+{% endblock %}

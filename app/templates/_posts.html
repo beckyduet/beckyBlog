@@ -1,0 +1,30 @@
+
+{% for post in posts %}
+<div class="col-md-12">
+    <div class="row g-0 border rounded gap-3 overflow-hidden flex-md-row mb-8 shadow-sm h-md-250 position-relative">
+        <div class="col-auto d-none d-lg-block d-bg-light">
+            <a href="https://imgse.com/i/ppcsr9A"><img alt="ppcsr9A.jpg"
+                                                       height="250" src="{{ post.img_url }}" width="400"/></a>
+        </div>
+        <div class="col p-6 d-flex flex-column position-static">
+            <strong class="d-inline-block mb-2 text-primary">{{ post.category }}</strong>
+            <h3 class="mb-0">{{ post.title }}</h3>
+            <p> 更新时间：{{ post.timestamp | truncate(length=10, killwords=True, end='') }} </p>
+            <p class="card-text mb-auto"> {% if post.description %}
+                {{ post.description | safe }}
+                {% else %}
+                {{ post.description }}
+                {% endif %}</p>
+            <div class="post-foot">
+                <a href="{{ url_for('main.post',id=post.id) }}">展开阅读</a>
+                {% if current_user.is_authenticated %}
+                <a href="{{ url_for('main.edit',post_id=post.id) }}">编辑</a>
+                {% endif %}
+            </div>
+        </div>
+
+    </div>
+    <br>
+</div>
+{% endfor %}
+
