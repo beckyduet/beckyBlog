@@ -1,7 +1,10 @@
 import os
+import sys
+sys.path.append(os.path.dirname(__file__) + os.sep + '.')
+
 from flask_migrate import Migrate
-from .app import create_app, db
-from .app.models import Post,User
+from app import create_app, db
+from app.models import Post,User
 
 app = create_app(os.getenv('FLASK_CONFIG') or 'default')
 migrate = Migrate(app, db)

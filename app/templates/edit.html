@@ -7,7 +7,7 @@
     <h1 align="center">编辑文章</h1>
 </div>
 <div>
-    <form action="{{ url_for('main.edit',post_id = 1) }}" method="post">
+    <form action="{{ url_for('main.edit',post_id = post_id) }}" method="post">
         {{ form.hidden_tag() }}
         {{ form.csrf_token() }}
 

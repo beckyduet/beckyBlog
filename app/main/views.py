@@ -58,10 +58,7 @@ def resume():
 @login_required
 def edit(post_id):
     post = Post.query.get_or_404(post_id)
-    if post.author_id != current_user.id:
-        abort(403)
     form = PostForm()
-
     if form.validate_on_submit():
         post.id = post_id
         post.title = form.title.data
